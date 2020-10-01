@@ -28,7 +28,7 @@ MyElve::MyElve(QWidget* parent)
 	m_stackedWidget = new QStackedWidget(this);
 	m_welcome = new Welcome(this);
 	m_memo = new Memo(this);
-	m_makeOrder = new MakeOrder(this, this);
+	m_makeOrder = new MakeOrder(this);
 
 	// 初始化布局
 	QHBoxLayout* mainLayout = new QHBoxLayout(this);
@@ -73,7 +73,7 @@ MyElve::MyElve(QWidget* parent)
 
 	// 设置整体窗口属性
 	setWindowFlags(Qt::FramelessWindowHint);   // 去掉窗口边框
-	//setAttribute(Qt::WA_TranslucentBackground);   // 将窗口全透明
+	setAttribute(Qt::WA_TranslucentBackground);   // 将窗口全透明
 	move(1600, 700);   // TODO：这里修改一下
 	
 
@@ -101,5 +101,5 @@ void MyElve::invokeOrderDialogSlot()
 
 void MyElve::addCheckBoxSlot(QString a_text)
 {
-	m_memo->addCheckBox(a_text);
+	m_memo->addCheckBoxSlot(a_text);
 }

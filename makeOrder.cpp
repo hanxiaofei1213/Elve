@@ -59,8 +59,9 @@ void MakeOrder::dealOrder()
 	int memoPos = memoRegexp.indexIn(order);
 	if (memoPos != -1) 
 	{
-		emit addCheckBoxSignal(memoRegexp.cap(3));   // TODO：here 这里要搞搞
-		qDebug() << memoRegexp.cap(3);
+		// TODO：here 这里要搞搞，没加条件筛选
+		emit addCheckBoxSignal(memoRegexp.cap(3));   
+		//qDebug() << memoRegexp.cap(3);
 	}
 	
 
