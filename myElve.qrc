@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/myElve">
+        <file>C:/Users/64315/Desktop/test.png</file>
+        <file>myQss.qss</file>
+    </qresource>
+</RCC>

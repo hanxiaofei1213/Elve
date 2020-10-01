@@ -1,0 +1,8 @@
+
+
+QTextBrowser 
+{
+	border-style:none;
+	background-color:rgb(255,255,255,100);
+	font-size:20px;
+}
