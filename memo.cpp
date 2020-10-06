@@ -1,4 +1,4 @@
-
+#include <QPixmap>
 #include <QSound>
 
 #include "memo.h"
@@ -8,13 +8,17 @@
 // TODO：搞一下背景
 Memo::Memo(QWidget* parent) : QWidget(parent)
 {
-	m_mainWidget = new QWidget(this);
+	// 初始化属性
+	m_mainLabel = new QLabel(this);
 	m_checkBoxList = new QList<QCheckBox *>;
-	m_mainlayout = new QVBoxLayout(m_mainWidget);
+	m_mainlayout = new QVBoxLayout(m_mainLabel);
 
-	m_mainWidget->setFixedSize(200, 100);
-	m_mainWidget->setStyleSheet("background-color:yellow");
+	m_mainLabel->setFixedSize(150, 140);
+	
 
+	// 设置背景
+	QPixmap pix(":/myElve/usePic/memoBackground.png");
+	m_mainLabel->setPixmap(pix);
 	addCheckBoxSlot("for test");
 	
 }
@@ -29,11 +33,11 @@ Memo::~Memo()
 // 添加checkBox的方法，最多四个现在
 void Memo::addCheckBoxSlot(QString a_text)
 {
-	QCheckBox* box = new QCheckBox(a_text, m_mainWidget);
+	QCheckBox* box = new QCheckBox(a_text, m_mainLabel);
 	m_checkBoxList->append(box);
 	connect(box, &QCheckBox::stateChanged, this, &Memo::addThoughtLineSlot);
 	m_mainlayout->addWidget(box);
-	m_mainWidget->setLayout(m_mainlayout);
+	m_mainLabel->setLayout(m_mainlayout);
 }
 
 // 删除checkBox的方法

@@ -8,7 +8,7 @@
 #include <QList>
 #include <QCheckBox>
 #include <QVBoxLayout>
-
+#include <QLabel>
 
 class Memo : public QWidget {
 	Q_OBJECT
@@ -16,7 +16,7 @@ public:
 	Memo(QWidget* parent = 0);
 	~Memo();
 
-	QWidget* m_mainWidget;
+	QLabel* m_mainLabel;
 	QList<QCheckBox*>* m_checkBoxList;   // 存放复选框的数组
 	QVBoxLayout* m_mainlayout;
 

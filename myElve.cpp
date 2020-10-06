@@ -47,7 +47,7 @@ MyElve::MyElve(QWidget* parent)
 
 	// 设置图片的位置 
 	QPixmap* pixmap = new QPixmap;
-	pixmap->load(":/myElve/C:/Users/64315/Desktop/test.png");
+	pixmap->load(":/myElve/usePic/test.png");
 	m_picLabel->setPixmap(*pixmap);
 	m_picLabel->setAlignment(Qt::AlignCenter);
 
@@ -58,11 +58,11 @@ MyElve::MyElve(QWidget* parent)
 
 
 	// 创建布局
-	// 设置右边上下布局比例为1：2
+	// 设置右边上下布局比例为1：1
 	rightLayout->addWidget(m_stackedWidget);
 	rightLayout->addWidget(m_picLabel);
 	rightLayout->setStretchFactor(m_stackedWidget, 1);
-	rightLayout->setStretchFactor(m_picLabel, 2);
+	rightLayout->setStretchFactor(m_picLabel, 1);
 
 	mainLayout->addLayout(leftLayout);
 	mainLayout->addLayout(rightLayout);
