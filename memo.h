@@ -26,8 +26,4 @@ public slots:
 	void addCheckBoxSlot(QString);
 	void deleteCheckBoxSlot();
 
-
-
-	
-
 };

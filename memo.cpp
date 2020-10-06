@@ -13,7 +13,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_mainlayout = new QVBoxLayout(m_mainWidget);
 
 	m_mainWidget->setFixedSize(200, 100);
-	m_mainWidget->setStyleSheet("background:yellow");
+	m_mainWidget->setStyleSheet("background-color:yellow");
 
 	addCheckBoxSlot("for test");
 	
@@ -51,7 +51,6 @@ void Memo::addThoughtLineSlot(int a_state)
 	{
 		box->setStyleSheet("text-decoration: line-through;");
 		//QSound::play(":/myElve/messionComplete.wav");
-		delete box;
 	}
 	else {
 		box->setStyleSheet("");
