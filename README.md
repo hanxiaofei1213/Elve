@@ -2,9 +2,9 @@
 > 桌面小精灵
 
 ### 1.1.1 版本界面
-![image](http://github.com/lastpast/myElve/raw/master/elvePic/精灵欢迎界面.png)
-![image](http://github.com/lastpast/myElve/raw/master/elvePic/精灵备忘录界面.png)
-![image](http://github.com/lastpast/myElve/raw/master/elvePic/精灵命令界面.png)
+![image](http://github.com/lastpast/myElve/raw/master/elvePic/welcomePic.png)
+![image](http://github.com/lastpast/myElve/raw/master/elvePic/memoPic.png)
+![image](http://github.com/lastpast/myElve/raw/master/elvePic/orderPic.png)
 
 ### TODO
 * 修复备忘录中背景图片问题。
