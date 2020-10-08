@@ -9,7 +9,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_pixmap = new QPixmap;
 	m_mainLabel = new QLabel(this);
 	m_bottomSpacer = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);    // 弹簧默认这么大
-	m_checkBoxMap = new QMap<QString, DraggableBox*>;
+	m_draggableBoxMap = new QMap<QString, DraggableBox*>;
 	m_size = new QSize(150, 140);
 	m_location = new QPoint(40, 0);
 	m_layout = new QVBoxLayout(this);
@@ -24,20 +24,20 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 
 	// 设置label大小
 	setLabelSize(*m_size);
-
-	// 显示所有复选框
-	showOnePageBox();
-
+	
 	// 设置布局的属性
 	m_layout->setSpacing(10);
 	m_layout->addItem(m_bottomSpacer);
 	setLayout(m_layout);
+
+	// 显示所有复选框
+	showOnePageBox();
 }
 
 // 析构函数
 Memo::~Memo()
 {
-	delete m_checkBoxMap;
+	delete m_draggableBoxMap;
 }
 
 /**
@@ -90,7 +90,7 @@ void Memo::showOnePageBox()
 
 	// 遍历存放复选框的map
 	int i = 0;
-	for each (auto box in *m_checkBoxMap)
+	for each (auto box in *m_draggableBoxMap)
 	{
 		// 如果该复选框已经添加到布局了，就什么也不做，否则添加至布局
 		if (box->layout() != m_layout)
@@ -129,7 +129,7 @@ void Memo::addCheckBoxSlot(QString a_text)
 	connect(box, &DraggableBox::deleteDraggableBoxSignal, this, &Memo::deleteCheckBoxSlot);
 
 	// 添加到map中
-	m_checkBoxMap->insert(box->objectName(), box);
+	m_draggableBoxMap->insert(box->objectName(), box);
 
 	// 更新个数等属性
 	m_totalBox++;
@@ -145,7 +145,7 @@ void Memo::addCheckBoxSlot(QString a_text)
 void Memo::deleteCheckBoxSlot()
 {
 	DraggableBox* box = (DraggableBox*)sender();
-	m_checkBoxMap->remove(box->objectName());
+	m_draggableBoxMap->remove(box->objectName());
 	delete box;
 }
 
@@ -167,3 +167,14 @@ void Memo::addThoughtLineSlot(int a_state)
 		box->setStyleSheet("");
 	}
 }
+
+
+
+//void Memo::mouseMoveEvent(QMouseEvent* e)
+//{
+//	if (e->buttons() & Qt::RightButton)
+//	{
+//		qDebug() << "2333";
+//	}
+//}
+//

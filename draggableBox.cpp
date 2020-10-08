@@ -47,6 +47,7 @@ void DraggableBox::mouseMoveEvent(QMouseEvent* e)
 void DraggableBox::mouseReleaseEvent(QMouseEvent* e)
 {
 	QCheckBox::mouseReleaseEvent(e);
+
 	if (this->pos().x() < 0 || this->pos().y() < 0)
 		emit deleteDraggableBoxSignal();
 	else

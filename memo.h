@@ -16,6 +16,7 @@
 #include <QPoint>
 #include <QMapIterator>
 #include <QSpacerItem>
+#include <QMouseEvent>
 
 #include "draggableBox.h"
 
@@ -34,7 +35,7 @@ public:
 	QPixmap* m_pixmap;                           // 存放图片
 	QLabel* m_mainLabel;                         // 显示图片的label
 	QSpacerItem* m_bottomSpacer;                 // 放在最下面，把复选框顶起来的弹簧
-	QMap<QString, DraggableBox*>* m_checkBoxMap;    // 存放复选框的容器
+	QMap<QString, DraggableBox*>* m_draggableBoxMap; // 存放复选框的容器
 	QSize* m_size;                               // 控件大小
 	QPoint* m_location;                          // 部件的位置
 	QVBoxLayout* m_layout;                       // 布局 
@@ -46,8 +47,10 @@ public:
 
 
 public slots:
-	void addThoughtLineSlot(int);
+	void addThoughtLineSlot(int);                // 为复选框添加删除线   
 	void addCheckBoxSlot(QString);               // 添加复选框 
 	void deleteCheckBoxSlot();                   // 删除复选框
 
+//protected:
+//	void mouseMoveEvent(QMouseEvent*);
 };
