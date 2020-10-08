@@ -28,9 +28,9 @@ public:
 
 	void setBackgroundPic(const QString&);       // 设置背景图片
 	void setLabelSize(const QSize&);             // 设置label的大小   
-	void setLocation(const QPoint&);              // 设置部件的位置
+	void setLocation(const QPoint&);             // 设置部件的位置
 	void showOnePageBox();                       // 展示一页复选框
-
+	void changePage(bool);                       // 用来改变展示第几页的槽函数
 
 	QPixmap* m_pixmap;                           // 存放图片
 	QLabel* m_mainLabel;                         // 显示图片的label
@@ -44,13 +44,16 @@ public:
 	int m_nowPage;                               // 当前第几页
 	int m_totalBox;                              // 一共多少box了已经
 	int m_totalCompletedBox;                     // 一共完成多少了
-
+	QPoint* m_mousePressPoint;                   // 鼠标右键按下的位置
 
 public slots:
 	void addThoughtLineSlot(int);                // 为复选框添加删除线   
 	void addCheckBoxSlot(QString);               // 添加复选框 
 	void deleteCheckBoxSlot();                   // 删除复选框
+	
 
-//protected:
-//	void mouseMoveEvent(QMouseEvent*);
+protected:
+	// 鼠标手势模块，使得可以用手势便捷的操作
+	void mousePressEvent(QMouseEvent*);
+	void mouseReleaseEvent(QMouseEvent*);
 };

@@ -17,6 +17,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_nowPage = 1;
 	m_totalBox = 0;
 	m_totalCompletedBox = 0;
+	m_mousePressPoint = new QPoint(0, 0);
 
 
 	// 设置背景
@@ -112,6 +113,22 @@ void Memo::showOnePageBox()
 	m_layout->addItem(m_bottomSpacer);
 }
 
+/**
+ * 函数名：changePageSlot
+ * 作用：用来换页的槽函数
+ */
+void Memo::changePage(bool a_isdown)
+{
+	if (a_isdown)
+	{
+		m_nowPage = (m_nowPage >= m_pageCount) ? (m_nowPage + 1 - m_pageCount) : m_nowPage + 1;
+	} else {
+		m_nowPage = (m_nowPage <= 1) ? (m_nowPage - 1 + m_pageCount) : m_nowPage - 1;
+	}
+		
+
+	showOnePageBox();
+}
 
 /**
  * 函数名：addCheckBoxSlot
@@ -170,11 +187,31 @@ void Memo::addThoughtLineSlot(int a_state)
 
 
 
-//void Memo::mouseMoveEvent(QMouseEvent* e)
-//{
-//	if (e->buttons() & Qt::RightButton)
-//	{
-//		qDebug() << "2333";
-//	}
-//}
-//
+
+// 鼠标手势模块
+// ============================================================
+
+/**
+ * 函数名：mousePressEvent
+ * 作用：用来记录起始点位，和最后释放点位做比较，看向上翻页还是向下翻页
+ */
+void Memo::mousePressEvent(QMouseEvent* e)
+{
+	if (e->button() == Qt::RightButton)
+		*m_mousePressPoint = e->globalPos();
+}
+
+
+/**
+ * 函数名：mouseReleaseEvent
+ * 作用：根据释放位置的鼠标y坐标，和鼠标按下位置的y坐标比较，决定翻页方向
+ */
+void Memo::mouseReleaseEvent(QMouseEvent* e)
+{
+	if (e->button() == Qt::RightButton)
+	{
+		bool isdown = e->globalPos().y() - m_mousePressPoint->y();
+		changePage(isdown);
+	}
+		
+}

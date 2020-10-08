@@ -1,8 +1,9 @@
-
-
-QTextBrowser 
+DraggableBox
 {
-	border-style:none;
-	background-color:rgb(255,255,255,100);
-	font-size:20px;
+	font-size:16px;
+}
+
+QLabel
+{
+	font-size:16px;
 }
