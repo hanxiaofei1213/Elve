@@ -3,6 +3,7 @@
 # myElve
 
 > 桌面小精灵
+> 环境：vs2019, Qt5.14.2
 
 ### 1.1.1 版本界面
 ![image](http://github.com/lastpast/myElve/raw/master/elvePic/welcomePic.png)
@@ -36,6 +37,8 @@
 ~~修复备忘录中背景图片问题。~~
 
 ~~重构备忘录这个部分的代码.~~
+
+~~为备忘录添加底部弹簧，使复选框总是紧凑的显示。~~
 
 
 
