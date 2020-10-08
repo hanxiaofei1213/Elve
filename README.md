@@ -5,7 +5,7 @@
 > 桌面小精灵
 > 环境：vs2019, Qt5.14.2
 
-### 1.2.0 版本界面
+### gif演示 1.2.0版本
 ![image](http://github.com/lastpast/myElve/raw/master/elvePic/elve1.2.0.gif)
 
 
