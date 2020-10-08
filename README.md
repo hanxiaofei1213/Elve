@@ -3,6 +3,7 @@
 # myElve
 
 > 桌面小精灵
+> 环境：vs2019, Qt5.14.2
 
 ### 1.1.1 版本界面
 ![image](http://github.com/lastpast/myElve/raw/master/elvePic/welcomePic.png)
