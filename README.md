@@ -5,20 +5,8 @@
 > 桌面小精灵
 > 环境：vs2019, Qt5.14.2
 
-### 1.1.1 版本界面
-![image](http://github.com/lastpast/myElve/raw/master/elvePic/welcomePic.png)
-
-欢迎界面
-
-![image](http://github.com/lastpast/myElve/raw/master/elvePic/memoPic.png)
-
-备忘录界面
-
-![image](C:\Users\64315\Desktop\开坑就硬开\pic\orderPic.png)
-
-下达命令界面
-
-
+### 1.2.0 版本界面
+![image](http://github.com/lastpast/myElve/raw/master/elvePic/elve1.2.0.gif)
 
 
 
