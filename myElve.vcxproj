@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="draggableBox.cpp" />
     <ClCompile Include="welcome.cpp" />
     <QtRcc Include="myElve.qrc" />
     <QtUic Include="myElve.ui" />
@@ -107,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="myQss.qss" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="draggableBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

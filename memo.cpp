@@ -1,6 +1,4 @@
 
-
-
 #include "memo.h"
 
 
@@ -11,7 +9,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_pixmap = new QPixmap;
 	m_mainLabel = new QLabel(this);
 	m_bottomSpacer = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);    // 弹簧默认这么大
-	m_checkBoxMap = new QMap<QString, QCheckBox*>;
+	m_checkBoxMap = new QMap<QString, DraggableBox*>;
 	m_size = new QSize(150, 140);
 	m_location = new QPoint(40, 0);
 	m_layout = new QVBoxLayout(this);
@@ -122,11 +120,13 @@ void Memo::showOnePageBox()
 void Memo::addCheckBoxSlot(QString a_text)
 {
 	// 创建复选框
-	QCheckBox* box = new QCheckBox(a_text, this);
+	DraggableBox* box = new DraggableBox(this);
+	box->setText(a_text);
 	box->setObjectName(QString(m_totalBox));
 
 	// 建立连接，每当复选框状态变化时，根据状态添加删除线
-	connect(box, &QCheckBox::stateChanged, this, &Memo::addThoughtLineSlot);
+	connect(box, &DraggableBox::stateChanged, this, &Memo::addThoughtLineSlot);
+	connect(box, &DraggableBox::deleteDraggableBoxSignal, this, &Memo::deleteCheckBoxSlot);
 
 	// 添加到map中
 	m_checkBoxMap->insert(box->objectName(), box);
@@ -144,7 +144,9 @@ void Memo::addCheckBoxSlot(QString a_text)
 // 删除checkBox的方法
 void Memo::deleteCheckBoxSlot()
 {
-
+	DraggableBox* box = (DraggableBox*)sender();
+	m_checkBoxMap->remove(box->objectName());
+	delete box;
 }
 
 
@@ -155,7 +157,7 @@ void Memo::deleteCheckBoxSlot()
  */
 void Memo::addThoughtLineSlot(int a_state)
 {
-	QCheckBox* box = (QCheckBox*)sender();
+	DraggableBox* box = (DraggableBox*)sender();
 	if (a_state == Qt::Checked)
 	{
 		box->setStyleSheet("text-decoration: line-through;");
