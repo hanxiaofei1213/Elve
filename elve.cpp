@@ -7,7 +7,7 @@
 
 #include <QDebug>
 
-#include "myElve.h"
+#include "elve.h"
 #include "memo.h"
 #include "welcome.h"
 #include "makeOrder.h"
@@ -15,7 +15,7 @@
 
 // TODO：处理下这个类，太冗长了
 
-MyElve::MyElve(QWidget* parent)
+Elve::Elve(QWidget* parent)
 	: QWidget(parent)
 {
 
@@ -79,27 +79,27 @@ MyElve::MyElve(QWidget* parent)
 
 
 	// 建立连接
-	connect(m_btnList->at(0), &QPushButton::clicked, this, &MyElve::invokeOrderDialogSlot);
-	connect(m_btnList->at(1), &QPushButton::clicked, this, &MyElve::switchWidgetSlot);
+	connect(m_btnList->at(0), &QPushButton::clicked, this, &Elve::invokeOrderDialogSlot);
+	connect(m_btnList->at(1), &QPushButton::clicked, this, &Elve::switchWidgetSlot);
 	connect(m_btnList->at(5), &QPushButton::clicked, this, &QApplication::quit);    // TODO：关闭之前保存到文件
 
 }
 
 
 // 按钮点击切换界面的槽
-void MyElve::switchWidgetSlot()
+void Elve::switchWidgetSlot()
 {
 	int currentIndex = m_stackedWidget->currentIndex();
 	m_stackedWidget->setCurrentIndex((currentIndex + 1) % m_widgetCount);
 }
 
 // 调用下达命令类的槽函数
-void MyElve::invokeOrderDialogSlot()
+void Elve::invokeOrderDialogSlot()
 {
 	m_makeOrder->show();
 }
 
-void MyElve::addCheckBoxSlot(QString a_text)
+void Elve::addCheckBoxSlot(QString a_text)
 {
 	m_memo->addCheckBoxSlot(a_text);
 }

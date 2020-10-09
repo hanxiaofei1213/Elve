@@ -9,14 +9,14 @@
 class QLineEdit;
 class QLabel;
 class QPushButton;
-class MyElve;
+class Elve;
 
 // 类声明
 class MakeOrder : public QDialog {
 	Q_OBJECT
 
 public:
-	MakeOrder(MyElve* myElve, QWidget* parent = 0);
+	MakeOrder(Elve* myElve, QWidget* parent = 0);
 
 	// 界面属性
 	QLineEdit* m_orderLineEdit;

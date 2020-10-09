@@ -164,6 +164,8 @@ void Memo::deleteCheckBoxSlot()
 	DraggableBox* box = (DraggableBox*)sender();
 	m_draggableBoxMap->remove(box->objectName());
 	delete box;
+
+	showOnePageBox();
 }
 
 

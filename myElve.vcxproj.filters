@@ -24,18 +24,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="myElve.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
     <QtUic Include="myElve.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
-    <QtMoc Include="myElve.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="myElve.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +44,9 @@
     <ClCompile Include="draggableBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="elve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="makeOrder.h">
@@ -67,10 +61,18 @@
     <QtMoc Include="draggableBox.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="elve.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="myQss.qss">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Elve.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

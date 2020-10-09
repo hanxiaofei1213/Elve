@@ -19,13 +19,13 @@ class Welcome;
 class MakeOrder;
 
 // 类
-class MyElve : public QWidget
+class Elve : public QWidget
 {
 	Q_OBJECT
 
 public:
 	// 构造函数
-	MyElve(QWidget* parent = Q_NULLPTR);
+	Elve(QWidget* parent = Q_NULLPTR);
 
 	QList<QPushButton*>* m_btnList;   	// 存放按钮的容器
 	QLabel* m_picLabel;   	// 放置图的label

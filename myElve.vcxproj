@@ -16,6 +16,7 @@
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <ProjectName>Elve</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -89,12 +90,12 @@
   <ItemGroup>
     <ClCompile Include="draggableBox.cpp" />
     <ClCompile Include="welcome.cpp" />
-    <QtRcc Include="myElve.qrc" />
+    <QtRcc Include="Elve.qrc" />
     <QtUic Include="myElve.ui" />
-    <QtMoc Include="myElve.h" />
+    <QtMoc Include="elve.h" />
     <ClCompile Include="makeOrder.cpp" />
     <ClCompile Include="memo.cpp" />
-    <ClCompile Include="myElve.cpp" />
+    <ClCompile Include="elve.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

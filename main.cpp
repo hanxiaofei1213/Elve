@@ -1,4 +1,4 @@
-#include "myElve.h"
+#include "elve.h"
 #include <QtWidgets/QApplication>
 #include <QFile>
 #include <QDebug>
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 		qDebug() << "qss open failed";
 	}
 
-	MyElve w;
+	Elve w;
 	w.setWindowFlags(w.windowFlags() | Qt::WindowStaysOnTopHint);  // 设置窗口总在最前
     w.show();
     return a.exec();
