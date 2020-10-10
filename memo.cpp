@@ -38,7 +38,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 // Îö¹¹º¯Êı
 Memo::~Memo()
 {
-	delete m_draggableBoxMap;
+	
 }
 
 /**
