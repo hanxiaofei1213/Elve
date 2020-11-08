@@ -11,12 +11,11 @@
 
 
 // 前向声明
-class QPushButton;
-class QLabel;
 class QStackedWidget;
 class Memo;
 class Welcome;
 class MakeOrder;
+class DraggableLabel;
 
 // 类
 class Elve : public QWidget
@@ -27,15 +26,16 @@ public:
 	// 构造函数
 	Elve(QWidget* parent = Q_NULLPTR);
 
-	QList<QPushButton*>* m_btnList;   	// 存放按钮的容器
-	QLabel* m_picLabel;   	// 放置图的label
+	DraggableLabel* m_picLabel;   	            // 放置图的label
 	QStackedWidget* m_stackedWidget;	// 存放不同界面的stackWidget
 
 public slots:
-	void switchWidgetSlot();   // 切换stackedWidget中组件的槽函数
-	void invokeOrderDialogSlot();   // 调用命令窗口槽函数
-	void addCheckBoxSlot(QString);   // 添加一个复选框
-
+	void switchWidgetSlot();           // 切换stackedWidget中组件的槽函数
+	void invokeOrderDialogSlot();      // 调用命令窗口槽函数
+	void hideOtherWidgetSlot();        // 隐藏或显示除了label的其它组件
+	// 响应鼠标的槽函数
+	void rightDragToLeftSlot();
+	void rightDragToRightSlot();
 
 private:
 	Ui::myElveClass ui;

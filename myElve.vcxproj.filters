@@ -47,6 +47,9 @@
     <ClCompile Include="elve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draggableLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="makeOrder.h">
@@ -62,6 +65,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="elve.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="draggableLabel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

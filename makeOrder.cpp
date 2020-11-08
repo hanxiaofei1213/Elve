@@ -7,10 +7,10 @@
 #include <QRegExp>
 
 #include "makeOrder.h"
-#include "elve.h"
 
 
-MakeOrder::MakeOrder(Elve* myElve, QWidget* parent)
+
+MakeOrder::MakeOrder(QWidget* parent)
 	: QDialog(parent),
 	m_orderLineEdit(new QLineEdit(this)),
 	m_yesButton(new QPushButton(this)), m_noButton(new QPushButton(this)),
@@ -46,7 +46,6 @@ MakeOrder::MakeOrder(Elve* myElve, QWidget* parent)
 	// 建立连接
 	connect(m_yesButton, &QPushButton::clicked, this, &MakeOrder::dealOrder);
 	connect(m_noButton, &QPushButton::clicked, this, &MakeOrder::exitDialog);
-	connect(this, &MakeOrder::addCheckBoxSignal, myElve, &Elve::addCheckBoxSlot);
 }
 
 // 处理命令的槽函数
@@ -63,8 +62,6 @@ void MakeOrder::dealOrder()
 		emit addCheckBoxSignal(memoRegexp.cap(3));   
 		//qDebug() << memoRegexp.cap(3);
 	}
-	
-
 
 	// 清空编辑框内容，将对话框隐藏
 	m_orderLineEdit->setText("");

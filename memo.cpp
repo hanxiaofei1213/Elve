@@ -10,8 +10,8 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_mainLabel = new QLabel(this);
 	m_bottomSpacer = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);    // 弹簧默认这么大
 	m_draggableBoxMap = new QMap<QString, DraggableBox*>;
-	m_size = new QSize(150, 140);
-	m_location = new QPoint(40, 0);
+	m_size = new QSize(180, 130);
+	m_location = new QPoint(20, 0);
 	m_layout = new QVBoxLayout(this);
 	m_pageCount = 1;
 	m_nowPage = 1;
@@ -27,7 +27,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	setLabelSize(*m_size);
 	
 	// 设置布局的属性
-	m_layout->setSpacing(10);
+	m_layout->setSpacing(5);
 	m_layout->addItem(m_bottomSpacer);
 	setLayout(m_layout);
 
@@ -125,8 +125,6 @@ void Memo::changePage(bool a_isdown)
 	} else {
 		m_nowPage = (m_nowPage <= 1) ? (m_nowPage - 1 + m_pageCount) : m_nowPage - 1;
 	}
-		
-
 	showOnePageBox();
 }
 
@@ -150,7 +148,7 @@ void Memo::addCheckBoxSlot(QString a_text)
 
 	// 更新个数等属性
 	m_totalBox++;
-	m_pageCount = m_totalBox / m_onePageBoxCount + 1;
+	m_pageCount = ceil(m_totalBox / m_onePageBoxCount);
 
 	// 调用显示的方法
 	showOnePageBox();
@@ -164,6 +162,10 @@ void Memo::deleteCheckBoxSlot()
 	DraggableBox* box = (DraggableBox*)sender();
 	m_draggableBoxMap->remove(box->objectName());
 	delete box;
+
+	// 更新复选框个数和页数
+	m_totalBox--;
+	m_pageCount = ceil(m_totalBox / m_onePageBoxCount);
 
 	showOnePageBox();
 }
@@ -192,7 +194,6 @@ void Memo::addThoughtLineSlot(int a_state)
 
 // 鼠标手势模块
 // ============================================================
-
 /**
  * 函数名：mousePressEvent
  * 作用：用来记录起始点位，和最后释放点位做比较，看向上翻页还是向下翻页

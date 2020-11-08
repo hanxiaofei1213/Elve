@@ -54,6 +54,6 @@ public slots:
 
 protected:
 	// 鼠标手势模块，使得可以用手势便捷的操作
-	void mousePressEvent(QMouseEvent*);
+	void mousePressEvent(QMouseEvent*); 
 	void mouseReleaseEvent(QMouseEvent*);
 };

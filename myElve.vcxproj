@@ -44,7 +44,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>E:\qt\5.14.2\msvc2017_64\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <IncludePath>E:\qt\5.14.2\msvc2017_64\include;$(IncludePath)</IncludePath>
@@ -90,6 +90,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="draggableBox.cpp" />
+    <ClCompile Include="draggableLabel.cpp" />
     <ClCompile Include="welcome.cpp" />
     <QtRcc Include="Elve.qrc" />
     <QtUic Include="myElve.ui" />
@@ -113,6 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="draggableBox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="draggableLabel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

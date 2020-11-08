@@ -11,6 +11,7 @@
 #include "memo.h"
 #include "welcome.h"
 #include "makeOrder.h"
+#include "draggableLabel.h"
 
 
 // TODO：处理下这个类，太冗长了
@@ -23,33 +24,22 @@ Elve::Elve(QWidget* parent)
 
 
 	// 初始化
-	m_btnList = new QList<QPushButton*>;
-	m_picLabel = new QLabel(this);
+	m_picLabel = new DraggableLabel(this);
 	m_stackedWidget = new QStackedWidget(this);
 	m_welcome = new Welcome(this);
 	m_memo = new Memo(this);
 	m_makeOrder = new MakeOrder(this);
 
 	// 初始化布局
-	QHBoxLayout* mainLayout = new QHBoxLayout(this);
-	QVBoxLayout* leftLayout = new QVBoxLayout(this);
-	QVBoxLayout* rightLayout = new QVBoxLayout(this);
-	leftLayout->addStretch();
+	QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
-	// 设置按钮的属性和位置
-	for (int i = 0; i < m_buttonCount; ++i)
-	{
-		QPushButton* btn = new QPushButton(this);
-		btn->setObjectName(QString('1' + i));   // 使用objectName作为区分名字
-		leftLayout->addWidget(btn);
-		m_btnList->append(btn);
-	}
 
 	// 设置图片的位置 
 	QPixmap* pixmap = new QPixmap;
-	pixmap->load(":/myElve/usePic/test.png");
+	pixmap->load(":/myElve/usePic/gril1.png");
 	m_picLabel->setPixmap(*pixmap);
 	m_picLabel->setAlignment(Qt::AlignCenter);
+
 
 	// 设置stackedWidget属性
 	m_stackedWidget->addWidget(m_welcome);  // 欢迎界面index为0
@@ -57,31 +47,29 @@ Elve::Elve(QWidget* parent)
 
 
 
-	// 创建布局
-	// 设置右边上下布局比例为1：1
-	rightLayout->addWidget(m_stackedWidget);
-	rightLayout->addWidget(m_picLabel);
-	rightLayout->setStretchFactor(m_stackedWidget, 1);
-	rightLayout->setStretchFactor(m_picLabel, 1);
-
-	mainLayout->addLayout(leftLayout);
-	mainLayout->addLayout(rightLayout);
-	// 设置左右两个布局的比例是1：4
-	mainLayout->setStretchFactor(leftLayout, 1);
-	mainLayout->setStretchFactor(rightLayout, 4);
+	// 布局中添加两个组件
+	mainLayout->addWidget(m_stackedWidget);
+	mainLayout->addWidget(m_picLabel);
 	setLayout(mainLayout);
+
 
 	// 设置整体窗口属性
 	setWindowFlags(Qt::FramelessWindowHint);   // 去掉窗口边框
 	setAttribute(Qt::WA_TranslucentBackground);   // 将窗口全透明
-	move(1600, 700);   // TODO：这里修改一下
+
+	move(1650, 600);   // TODO：这里修改一下
+	resize(200, 400);  // 调整大小
 	
 
-
 	// 建立连接
-	connect(m_btnList->at(0), &QPushButton::clicked, this, &Elve::invokeOrderDialogSlot);
-	connect(m_btnList->at(1), &QPushButton::clicked, this, &Elve::switchWidgetSlot);
-	connect(m_btnList->at(5), &QPushButton::clicked, this, &QApplication::quit);    // TODO：关闭之前保存到文件
+	connect(m_makeOrder, &MakeOrder::addCheckBoxSignal, m_memo, &Memo::addCheckBoxSlot);
+	connect(m_picLabel, &DraggableLabel::leftDoubleClickedSignal, this, &Elve::invokeOrderDialogSlot);
+	connect(m_picLabel, &DraggableLabel::rightDoubleClickedSignal, this, &Elve::hideOtherWidgetSlot);
+	connect(m_picLabel, &DraggableLabel::leftDragToLeftSignal, this, &Elve::switchWidgetSlot);
+	connect(m_picLabel, &DraggableLabel::leftDragToRightSignal, this, &Elve::switchWidgetSlot);
+	connect(m_picLabel, &DraggableLabel::leftDragToDownSignal, this, &QApplication::quit);
+	connect(m_picLabel, &DraggableLabel::rightDragToLeftSignal, this, &Elve::rightDragToLeftSlot);
+	connect(m_picLabel, &DraggableLabel::rightDragToRightSignal, this, &Elve::rightDragToRightSlot);
 
 }
 
@@ -99,7 +87,22 @@ void Elve::invokeOrderDialogSlot()
 	m_makeOrder->show();
 }
 
-void Elve::addCheckBoxSlot(QString a_text)
+
+// 隐藏或显示除了label的widget
+void Elve::hideOtherWidgetSlot()
 {
-	m_memo->addCheckBoxSlot(a_text);
+	if (m_stackedWidget->isHidden())
+		m_stackedWidget->show();
+	else
+		m_stackedWidget->hide();
+}
+
+
+void Elve::rightDragToLeftSlot()
+{
+	qDebug() << "rightDragToLeftSlot";
+}
+void Elve::rightDragToRightSlot()
+{
+	qDebug() << "rightDragToRightSlot";
 }

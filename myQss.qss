@@ -1,9 +1,9 @@
 DraggableBox
 {
-	font-size:16px;
+	font-size:14px;
 }
 
 QLabel
 {
-	font-size:16px;
+	font-size:14px;
 }
