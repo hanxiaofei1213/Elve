@@ -6,6 +6,7 @@
 > 环境：vs2019, Qt5.14.2
 
 ### gif演示 2.0。0版本
+在`elvePic`目录中，有演示的gif。
 ![image](http://github.com/lastpast/myElve/raw/master/elvePic/elve2.0.gif)
 
 
