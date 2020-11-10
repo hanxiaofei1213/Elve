@@ -52,13 +52,16 @@ Elve::Elve(QWidget* parent)
 	mainLayout->addWidget(m_picLabel);
 	setLayout(mainLayout);
 
+	// 设置两个组件的位置
+	m_stackedWidget->move(0, 0);
+	m_picLabel->move(0, 150);
 
 	// 设置整体窗口属性
 	setWindowFlags(Qt::FramelessWindowHint);   // 去掉窗口边框
 	setAttribute(Qt::WA_TranslucentBackground);   // 将窗口全透明
 
 	move(1650, 600);   // TODO：这里修改一下
-	resize(200, 400);  // 调整大小
+	resize(250, 400);  // 调整大小
 	
 
 	// 建立连接

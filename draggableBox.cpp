@@ -33,10 +33,12 @@ void DraggableBox::mousePressEvent(QMouseEvent* e)
  */
 void DraggableBox::mouseMoveEvent(QMouseEvent* e)
 {
+	
 	if (e->buttons() & Qt::LeftButton)
 	{
 		this->move((e->globalPos() - *m_mouseRawGlobalLoc) + *m_boxRawLoc);
 	}
+	
 	QCheckBox::mouseMoveEvent(e);
 }
 
@@ -46,12 +48,15 @@ void DraggableBox::mouseMoveEvent(QMouseEvent* e)
  */
 void DraggableBox::mouseReleaseEvent(QMouseEvent* e)
 {
-	QCheckBox::mouseReleaseEvent(e);
 
 	if (this->pos().x() < 0 || this->pos().y() < 0)
 		emit deleteDraggableBoxSignal();
 	else
+	{
 		this->move(*m_boxRawLoc);
+		QCheckBox::mouseReleaseEvent(e);
+	}
 }
+		
 
 

@@ -10,11 +10,12 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	m_mainLabel = new QLabel(this);
 	m_bottomSpacer = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);    // 弹簧默认这么大
 	m_draggableBoxMap = new QMap<QString, DraggableBox*>;
-	m_size = new QSize(180, 130);
-	m_location = new QPoint(20, 0);
+	m_size = new QSize(250, 150);
+	m_location = new QPoint(0, 0);
 	m_layout = new QVBoxLayout(this);
 	m_pageCount = 1;
-	m_nowPage = 1;
+	m_nowPage = 0;
+	m_nowBox = 0;
 	m_totalBox = 0;
 	m_totalCompletedBox = 0;
 	m_mousePressPoint = new QPoint(0, 0);
@@ -27,7 +28,7 @@ Memo::Memo(QWidget* parent) : QWidget(parent)
 	setLabelSize(*m_size);
 	
 	// 设置布局的属性
-	m_layout->setSpacing(5);
+	m_layout->setSpacing(7);
 	m_layout->addItem(m_bottomSpacer);
 	setLayout(m_layout);
 
@@ -93,17 +94,18 @@ void Memo::showOnePageBox()
 	int i = 0;
 	for each (auto box in *m_draggableBoxMap)
 	{
+		// 先将所有复选框添加至布局，再选择是否让其隐藏
 		// 如果该复选框已经添加到布局了，就什么也不做，否则添加至布局
 		if (box->layout() != m_layout)
 			m_layout->addWidget(box);
 
 		// 如果当前的复选框不是当前页的内容，则隐藏，否则则展示出来
-		if (i < (m_nowPage - 1) * m_onePageBoxCount || i >= m_nowPage * m_onePageBoxCount)
+		if (i >= m_nowPage * m_onePageBoxCount && i < (m_nowPage + 1) * m_onePageBoxCount)
 		{
-			box->hide();
+			box->show();
 		}
 		else {
-			box->show();
+			box->hide();
 		}
 
 		i++;
@@ -121,9 +123,9 @@ void Memo::changePage(bool a_isdown)
 {
 	if (a_isdown)
 	{
-		m_nowPage = (m_nowPage >= m_pageCount) ? (m_nowPage + 1 - m_pageCount) : m_nowPage + 1;
+		m_nowPage = (m_nowPage + 1) % m_pageCount;
 	} else {
-		m_nowPage = (m_nowPage <= 1) ? (m_nowPage - 1 + m_pageCount) : m_nowPage - 1;
+		m_nowPage = (m_nowPage - 1) % m_pageCount;
 	}
 	showOnePageBox();
 }
@@ -135,9 +137,9 @@ void Memo::changePage(bool a_isdown)
 void Memo::addCheckBoxSlot(QString a_text)
 {
 	// 创建复选框
-	DraggableBox* box = new DraggableBox(this);
+	DraggableBox* box = new DraggableBox();
 	box->setText(a_text);
-	box->setObjectName(QString(m_totalBox));
+	box->setObjectName(QString(m_totalBox));   
 
 	// 建立连接，每当复选框状态变化时，根据状态添加删除线
 	connect(box, &DraggableBox::stateChanged, this, &Memo::addThoughtLineSlot);
@@ -147,8 +149,9 @@ void Memo::addCheckBoxSlot(QString a_text)
 	m_draggableBoxMap->insert(box->objectName(), box);
 
 	// 更新个数等属性
+	m_nowBox++;
 	m_totalBox++;
-	m_pageCount = ceil(m_totalBox / m_onePageBoxCount);
+	m_pageCount = ceil(double(m_nowBox) / m_onePageBoxCount);
 
 	// 调用显示的方法
 	showOnePageBox();
@@ -164,9 +167,9 @@ void Memo::deleteCheckBoxSlot()
 	delete box;
 
 	// 更新复选框个数和页数
-	m_totalBox--;
-	m_pageCount = ceil(m_totalBox / m_onePageBoxCount);
-
+	m_nowBox--;
+	m_pageCount = ceil(double(m_nowBox) / m_onePageBoxCount);
+	
 	showOnePageBox();
 }
 

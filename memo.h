@@ -42,7 +42,8 @@ public:
 	const int m_onePageBoxCount = 4;             // 一页展示多少个待做事件
 	int m_pageCount;                             // 一共要多少页
 	int m_nowPage;                               // 当前第几页
-	int m_totalBox;                              // 一共多少box了已经
+	int m_nowBox;                                // 当前总共多少个     
+	int m_totalBox;                              // 一共多少box了已经，只能加不能减
 	int m_totalCompletedBox;                     // 一共完成多少了
 	QPoint* m_mousePressPoint;                   // 鼠标右键按下的位置
 
