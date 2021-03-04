@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPixmap>
+#include <QMovie>
 
 #include <QDebug>
 
@@ -35,10 +36,14 @@ Elve::Elve(QWidget* parent)
 
 
 	// 设置图片的位置 
-	QPixmap* pixmap = new QPixmap;
-	pixmap->load(":/myElve/usePic/gril1.png");
-	m_picLabel->setPixmap(*pixmap);
-	m_picLabel->setAlignment(Qt::AlignCenter);
+	//QPixmap* pixmap = new QPixmap;
+	//pixmap->load(":/myElve/usePic/gril1.png");
+	//m_picLabel->setPixmap(*pixmap);
+	//m_picLabel->setAlignment(Qt::AlignCenter);
+	m_movie = new QMovie(":/myElve/usePic/gril3.gif");
+	m_movie->setParent(this);
+	m_picLabel->setMovie(m_movie);
+	m_movie->start();
 
 
 	// 设置stackedWidget属性
@@ -75,6 +80,13 @@ Elve::Elve(QWidget* parent)
 	connect(m_picLabel, &DraggableLabel::rightDragToRightSignal, this, &Elve::rightDragToRightSlot);
 
 }
+
+// 析构函数
+Elve::~Elve()
+{
+	m_movie->stop();
+}
+
 
 
 // 按钮点击切换界面的槽

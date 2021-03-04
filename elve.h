@@ -16,6 +16,7 @@ class Memo;
 class Welcome;
 class MakeOrder;
 class DraggableLabel;
+class QMovie;
 
 // 类
 class Elve : public QWidget
@@ -25,6 +26,7 @@ class Elve : public QWidget
 public:
 	// 构造函数
 	Elve(QWidget* parent = Q_NULLPTR);
+	~Elve();
 
 	DraggableLabel* m_picLabel;   	            // 放置图的label
 	QStackedWidget* m_stackedWidget;	// 存放不同界面的stackWidget
@@ -45,5 +47,6 @@ private:
 	Welcome* m_welcome;
 	Memo* m_memo;
 	MakeOrder* m_makeOrder;
+	QMovie* m_movie;              // 展示gif的东西
 
 };

@@ -5,5 +5,7 @@
         <file>usePic/test.png</file>
         <file>usePic/memoBackground.png</file>
         <file>usePic/gril1.png</file>
+        <file>usePic/gril2.gif</file>
+        <file>usePic/gril3.gif</file>
     </qresource>
 </RCC>
